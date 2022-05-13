@@ -1,0 +1,20 @@
+@import "../../styles/colors.scss";
+@import "../../styles/styleFunctions.scss";
+
+.coinDetails-container{
+   background: linear-gradient(rgb(248, 250, 253) 0%, rgba(248, 250, 253, 0) 413px);
+   box-sizing: border-box;
+   padding:0;
+   max-width: 100%; 
+   width: 100%;
+   .coinDetails-card{
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 1400px;
+        padding-right: 16px;
+        padding-left: 16px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-top: 24px;
+   }
+}

@@ -28,7 +28,6 @@ const GridTable = () => {
       </div>
       <div key="name">
         <h4 className="layout-title">Name</h4>
-        <p>Bitcoin</p>
       </div>
       <div key="symbol">
         <h4 className="layout-title">Symbol</h4>
