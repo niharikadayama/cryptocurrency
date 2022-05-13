@@ -1,9 +1,10 @@
-import Homepage from "./pages/homePage";
+
+import GridTable from "./components/gridTable";
 
 function App() {
   return (
     <>
-      <Homepage />
+      <GridTable/>
     </>
   );
 }
