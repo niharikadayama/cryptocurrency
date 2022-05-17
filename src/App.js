@@ -1,8 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CoinDetails from "./pages/coinDetails";
-function App() {
+import Homepage from "./pages/homePage";
+
+function App(props) {
   return (
     <>
-      <CoinDetails />
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Homepage />} />
+          <Route path="/x" element={<CoinDetails />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

@@ -1,8 +1,11 @@
 import React from "react";
 import GridLayout from "react-grid-layout";
+import { useNavigate } from "react-router-dom";
+
 import "./style.scss";
 
 const GridTable = () => {
+  const nav = useNavigate();
   const layout = [
     { i: "rank", x: 0, y: 0, w: 0.5, h: 1 },
     { i: "name", x: 1, y: 0, w: 0.5, h: 1 },
@@ -28,6 +31,14 @@ const GridTable = () => {
       </div>
       <div key="name">
         <h4 className="layout-title">Name</h4>
+        <p>
+          <button
+            onClick={() => console.log("Clicked!")}
+            onMouseOver={() => nav("/x")}
+          >
+            Click
+          </button>
+        </p>
       </div>
       <div key="symbol">
         <h4 className="layout-title">Symbol</h4>
