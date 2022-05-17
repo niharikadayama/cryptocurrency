@@ -1,0 +1,385 @@
+@import "../../styles/colors.scss";
+@import "../../styles/styleFunctions.scss";
+
+.coinDetails-container{
+   background: linear-gradient(rgb(248, 250, 253) 0%, rgba(248, 250, 253, 0) 413px);
+   box-sizing: border-box;
+   padding:0;
+   max-width: 100%; 
+   width: 100%;
+   .coinDetails-card{
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      .coinDetails-nav{
+         display: flex;
+         padding: 10px 0;
+         .coinDetails-nav-button{
+            all: unset;
+            padding-right: 15px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 18px;
+            color: rgb(88, 102, 126)
+         }
+         .current-coin{
+            color: black;
+         }
+         .coinDetails-nav-button-arrow{
+            padding-left: 8px;
+         }
+      }
+      .coinDetails-coinInfo{
+         display: flex;
+         justify-content: space-between;
+         .coinDetails-coinInfo-left{
+            .coinDetails-coinInfo-left-row1{
+               display: flex;
+               align-items: center;
+               .coinDetails-coinInfo-left-row1-img{
+                  width: 32px;
+                  height: 32px;
+                  margin-right: 12px;
+               }
+               .coinDetails-coinInfo-left-row1-coinName{
+                  font-size: 32px;
+                  line-height: 42px;
+                  margin-right: 4px;
+                  font-weight: 700;
+                  color:rgb(23, 25, 36);
+               }
+               .coinDetails-coinInfo-left-row1-coinTokenName{
+                  background-color: $color-light-neutral-2;
+                  color: $color-light-neutral-6;
+                  border-radius: 4px;
+                  padding: 2px 6px;
+                  font-size: 12px;
+                  font-weight: 600;
+                  line-height: 18px;
+                  margin-left: 8px;
+                  margin-right: 8px;
+               }
+               .coinDetails-coinInfo-left-row1-star{
+                  border: 1px solid rgb(207, 214, 228);
+                  width: 30.813px;
+                  height: 32px;
+                  border-radius: 4px;
+                  outline: 0;
+                  .coinDetails-coinInfo-left-row1-star-button{
+                     all: unset;
+                     width:100%;
+                     height: 100%;
+                     padding: 0 8px;
+                     font-size: 18px;
+                     color: rgb(207, 214, 228);
+                  }
+               }
+            }
+            .coinDetails-coinInfo-left-row2{
+               display: flex;
+               .coinDetails-coinInfo-left-row2-tokens{
+                  background-color: $color-light-neutral-2;
+                  color: $color-light-neutral-6;
+                  border-radius: 4px;
+                  padding: 2px 6px;
+                  margin-right: 8px;
+                  font-size: 11px;
+                  font-weight: 500;
+                  line-height: 18px;
+                  white-space: nowrap;
+               }
+               .selected-token{
+                  background-color: $color-light-neutral-5;
+                  color: rgb(255, 255, 255);
+               }
+            }
+         }
+         .coinDetails-coinInfo-right{
+            .coinDetails-coinInfo-right-row1{
+               color: $text-color-sub;
+               font-size: 12px;
+               font-weight: 500;
+               line-height: 18px;
+               text-align: right;
+               .coinDetails-coinInfo-right-row1-span{
+                  color: $color-light-neutral-5;
+                  font-weight: inherit;
+                  font-size: inherit;
+               }
+            }
+            .coinDetails-coinInfo-right-row2{
+               display: flex;
+               justify-content: flex-end;
+               align-items: center;
+               .coinDetails-coinInfo-right-row2-price{
+                  margin:0;
+                  font-size: 32px;
+                  font-weight: 700;
+                  // line-height: 42px;
+                  display: flex;
+                  .coinDetails-coinInfo-right-row2-percentage-div{
+                     font-size: 14px;
+                     font-weight: 600;
+                     padding: 5px 10px;
+                     white-space: nowrap;
+                     margin-left: 16px;
+                     border-radius: 8px;
+                     background-color: $up-color;
+                     color: white;
+                     align-self: center;
+                  }
+               }
+            }
+            .coinDetails-coinInfo-right-row3{
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-end;
+               .coinDetails-coinInfo-right-row3-price {
+                     font-size: 14px;
+                     color: $color-light-neutral-5;
+                     .coinDetails-coinInfo-right-row3-percentage-div {
+                           margin-left: 12px;
+                           white-space: nowrap;
+                           border-radius: 8px;
+                           padding: 0px;
+                           color: $down-color;
+                     }
+                  }
+            }
+            .coinDetails-coinInfo-right-row4{
+               margin: 14px 0px 8px;
+               display: flex;
+               justify-content: flex-end;
+               align-items: center;
+               .coinDetails-coinInfo-right-row4-scale{
+                  margin: 0 16px 0 0;
+                  .coinDetails-coinInfo-right-row4-scaleTitle{
+                     color: $color-light-neutral-6;
+                     font-size: 12px;
+                     font-weight: 400;
+                     line-height: 18px;
+                  }
+                  .coinDetails-coinInfo-right-row4-scaleValue{
+                     color: $color-primary-black;
+                     font-size: 12px;
+                     font-weight: 600;
+                     line-height: 22px;
+                  }
+                  .right{
+                     margin: 0 0 0 16px;
+                  }
+               }
+               .coinDetails-coinInfo-right-row4-progressBar{
+                  width: 100%;
+                  max-width: 170px;
+                  margin-top:-10px;
+               }
+               .coinDetails-coinInfo-right-row4-dropdown{
+                  background-color: $color-light-neutral-3;
+                  color: $color-light-neutral-6;
+                  border-radius: 4px;
+                  padding: 2px 6px;
+                  font-size: 11px;
+                  font-weight: 500;
+                  line-height: 18px;
+                  white-space: nowrap;
+               }
+            }
+         }
+      }
+      .coinDetails-source{
+         display: flex;
+         justify-content: space-between;
+         
+         .coinDetails-source-websites{
+           flex: 0 0 50%;
+           display: flex;
+           flex-direction: column;
+           flex-wrap: wrap;
+           padding-right: 100px;
+           .coinDetails-source-websites-details{
+               box-sizing: border-box;
+               margin: 0px;
+               // justify-content: space-between;
+               align-items: center;
+               ul {
+                     all: unset;
+                  }
+               li{
+                  all: unset;
+               }
+              .coinDetails-source-websites-details-button{
+                  all:unset;
+                  background-color: $color-light-neutral-2;
+                  color: $color-primary-black;
+                  border-radius: 8px;
+                  padding: 2px 8px;
+                  margin: 0px 4px 4px 0px;
+                  font-size: 11px;
+                  font-weight: 600;
+                 .coinDetails-source-websites-details-button-span{
+                     display: flex;
+                     align-items: center;
+                    .coinDetails-source-websites-details-imgStart{
+                       width:12px;
+                       height: 12px;
+                       padding-right: 8px;
+                    }
+                    .coinDetails-source-websites-details-title{
+                     padding-right: 8px;
+                    }
+                     .coinDetails-source-websites-details-imgEnd {
+                        width: 14px;
+                        height: 14px;
+                     }
+                 }
+              }
+           }
+           .coinDetails-source-websites-tags{
+               box-sizing: border-box;
+               margin: 0px;
+               padding: 14px 0px;
+               display: flex;
+               flex-direction: column;
+               flex-wrap: wrap;
+               .coinDetails-source-websites-tags-title{
+                  color: $color-light-neutral-6;
+                  font-size: 11px;
+                  line-height: 18px;
+                  margin-bottom: 4px;
+               }
+               .coinDetails-source-websites-tags-content{
+                  display: flex;
+                  ul{
+                     all: unset;
+                  }
+                  .coinDetails-source-websites-tags-content-title{
+                     all: unset;
+                     background-color: $color-light-neutral-2;
+                     color: $color-light-neutral-6;
+                     border-left: 3px solid $bg-color;
+                     border-radius: 40px;
+                     padding: 2px 8px;
+                     font-size: 11px;
+                     font-weight: 600;
+                     line-height: 18px;
+                     margin-right: 6px;
+                     margin-bottom: 4px;
+                  }
+               }
+           }
+         }
+         .coinDetails-source-actions{
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            flex: 50% 0 0 ;
+            margin: 20px 0px;
+            .coinDetails-source-actions-sponsor{
+                display: flex;
+                align-items: center;
+                margin:5px 0;
+               .coinDetails-source-actions-sponsor-img{
+                  width: 16px;
+                  height: 16px;
+               }
+               .coinDetails-source-actions-sponsor-text{
+                  color: $color-light-neutral-5;
+                  font-size: 11px;
+                  font-weight: 600;
+                  line-height: 18px;
+                  margin-left: 4px;
+               }
+            }
+            .coinDetails-source-actions-buttons-div{
+                .coinDetails-source-actions-buttons{
+                  display: inline-flex;
+                  align-items: center;
+                  background-color: $theme-color;
+                  border: none;
+                  border-radius: 8px;
+                  color: rgb(255, 255, 255);
+                  padding: 5px 8px;
+                  margin: 0px 4px 4px 0px;
+                  font-size: 12px;
+                  font-weight: 600;
+                  line-height: 22px;
+                  cursor: pointer;
+                  outline: none;
+                }
+            }
+         }
+      }
+      .coinDetails-stockInfo{
+         flex: 0 0 100%;
+         .coinDetails-stockInfo-div{
+               border-top: 1px solid $color-light-neutral-2;
+               padding-top: 24px;
+               padding-bottom: 4px;
+               display: flex;
+               justify-content: space-between;
+               .left {
+                     border-left: 1px solid $color-light-neutral-2;
+                  }
+               .two-div{
+                  display: flex;
+                  flex-direction: column;
+               }
+            .coinDetails-stockInfo-div-stats{
+               padding-left: 24px;
+               .coinDetails-stockInfo-div-stats-title{
+                  display: flex;
+                  align-items: center;
+                  color: $color-light-neutral-6;
+                  font-size: 12px;
+                  font-weight: 500;
+                  line-height: 18px;
+
+                  .coinDetails-stockInfo-div-stats-title-span{
+                     background-color: $color-light-neutral-2;
+                     color: $color-light-neutral-6;
+                     border-radius: 4px;
+                     padding: 2px 6px;
+                     font-size: 11px;
+                     font-weight: 500;
+                     line-height: 18px;
+                     white-space: nowrap;
+                  }
+                  .coinDetails-stockInfo-div-stats-title-img{
+                     margin-left: 3px;
+                     width: 12px;
+                     height: 12px;
+                  }
+               }
+               .coinDetails-stockInfo-div-stats-price{
+                  color: $color-primary-black;
+                  font-weight: 600;
+                  font-size: 15px;
+                  margin-top: -6px;
+               }
+               .coinDetails-stockInfo-div-stats-percent{
+                  color: $up-color;
+                  padding: 0;
+                  border-radius: 8px;
+                  display: block;
+                  margin-top: 0;
+                  font-size: 12px;
+                  font-weight: 600;
+               }
+            }
+            .coinDetails-stockInfo-div-stats-supply{
+               margin-top:30px;
+               .coinDetails-stockInfo-div-stats-supply-info{
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+               }
+               .coinDetails-stockInfo-div-stats-supply-info-price{
+                  font-size: 12px;
+                  font-weight: 600;
+               }
+            }
+         }
+      }
+   }
+}
