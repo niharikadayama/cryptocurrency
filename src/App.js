@@ -1,12 +1,17 @@
-import GridTable from "./components/gridTable";
-import GridHeader from "./components/gridHeader";
+import HomePage from  "../src/pages/homePage"
+import CoinDetails from "./pages/coinDetails";
+import {BrowserRouter , Routes , Route} from "react-router-dom"
 
 function App() {
   return (
-    <>
-      <GridHeader title="All Cryptocurrencies" />
-      <GridTable />
-    </>
+    <BrowserRouter>
+          <Routes>
+              <Route index element = {<HomePage/>}></Route>
+              <Route path = "/h" element= {<CoinDetails />}></Route>
+          </Routes>
+    </BrowserRouter>
+      
+  
   );
 }
 

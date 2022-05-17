@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.scss";
 
-const GridTable = () => {
+const GridTable = (props) => {
+  const nav =useNavigate();
   const [APIData, setAPIData] = useState(null);
   const [loading, setLoading] = useState(true);
   const getData = async () => {
@@ -48,7 +50,7 @@ const GridTable = () => {
               return (
                 <tr key={key}>
                   <td>{val?.rank}</td>
-                  <td>{val?.name}</td>
+                  <td><button onClick={()=>nav("/h")}>{val?.name}</button></td>
                   <td>{val?.symbol}</td>
                   <td>{val?.marketCap}</td>
                   <td>{val?.price}</td>
