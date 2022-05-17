@@ -37,7 +37,6 @@ const GridTable = (props) => {
             <tr>
               <th>Rank</th>
               <th>Name</th>
-              <th>Symbol</th>
               <th>Market Cap</th>
               <th>Price</th>
               <th>Circulating Supply</th>
@@ -59,7 +58,6 @@ const GridTable = (props) => {
                       <p className="name">{val?.name}</p>
                     </button>
                   </td>
-                  <td>{val?.symbol}</td>
                   <td>{val?.marketCap}</td>
                   <td>{val?.price}</td>
                   <td>{val?.availableSupply}</td>
