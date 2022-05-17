@@ -7,25 +7,13 @@
     justify-content: center;
     .button-name{
         all:unset;
+        display: flex;
+        font-size: 12px;
+        font-weight: 600;
         .icon-img {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             padding-right: 4px;
-        }
-        .img-symbol{
-            display: flex;
-            .symbol{
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                color: rgba(23, 24, 27, 0.85);
-                font-weight: 600;
-            }
-        }
-        .name{
-            color: rgba(39, 52, 64, 0.5);
-            font-size: 12px;
-            font-weight: normal;
         }
     }
     table{
@@ -40,6 +28,19 @@
         border-bottom: 1px solid #cfd6e4;
     }
     td{
-        padding-left: 4px;
+        padding: 10px 0 6px  4px;
+        font-size: 12px;
+    }
+    .volume {
+        color: rgb(56, 97, 251);
+    }
+    .red{
+       color: rgb(217, 64, 64);
+    }
+    .green{
+        color:rgb(0,158,115);
+    }
+    .right-align{
+        text-align: end;
     }
 }

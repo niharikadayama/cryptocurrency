@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NumberFormat from 'react-number-format';
+import NumberFormat from "react-number-format";
 import "./style.scss";
 
 const GridTable = (props) => {
@@ -38,13 +38,14 @@ const GridTable = (props) => {
             <tr>
               <th>Rank</th>
               <th>Name</th>
-              <th>Market Cap</th>
-              <th>Price</th>
-              <th>Circulating Supply</th>
-              <th>Volume(24h)</th>
-              <th>% 1h</th>
-              <th>% 24h</th>
-              <th>% 7d</th>
+              <th>Symbol</th>
+              <th className="right-align">Market Cap</th>
+              <th className="right-align">Price</th>
+              <th className="right-align">Circulating Supply</th>
+              <th className="right-align">Volume(24h)</th>
+              <th className="right-align">% 1h</th>
+              <th className="right-align">% 24h</th>
+              <th className="right-align">% 7d</th>
             </tr>
             {APIData.map((val, key) => {
               return (
@@ -52,26 +53,60 @@ const GridTable = (props) => {
                   <td>{val?.rank}</td>
                   <td>
                     <button onClick={() => nav("/h")} className="button-name">
-                      <p className="img-symbol">
+                      <span>
                         <img src={val.icon} alt="icon" className="icon-img" />
-                        <span className="symbol">{val?.symbol}</span>
-                      </p>
-                      <p className="name">{val?.name}</p>
+                      </span>
+                      {val.name}
                     </button>
                   </td>
-                  <td>
-                    <NumberFormat value={Math.floor(val?.marketCap)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
-                    </td>
-                  <td>
-                  <NumberFormat value={(val?.price).toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                  <td>{val.symbol}</td>
+                  <td className="right-align">
+                    <NumberFormat
+                      value={Math.floor(val?.marketCap)}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"$"}
+                    />
                   </td>
-                  <td><NumberFormat value={val?.totalSupply} displayType={'text'} thousandSeparator={true} /> <span>{val?.symbol}</span></td>
-                  <td>
-                  <NumberFormat value={Math.floor(val?.volume)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                  <td className="right-align">
+                    <NumberFormat
+                      value={(val?.price).toFixed(2)}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"$"}
+                    />
                   </td>
-                  <td>{val?.priceChange1h}%</td>
-                  <td>{val?.priceChange1d}%</td>
-                  <td>{val?.priceChange1w}%</td>
+                  <td className="right-align">
+                    <NumberFormat
+                      value={val?.totalSupply}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
+                    <span>{val?.symbol}</span>
+                  </td>
+                  <td className="volume right-align">
+                    <NumberFormat
+                      value={Math.floor(val?.volume)}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"$"}
+                    />
+                  </td>
+                  {val?.priceChange1h <= 0 ? (
+                    <td className="red right-align">{val?.priceChange1h}%</td>
+                  ) : (
+                    <td className="green right-align">{val?.priceChange1h}%</td>
+                  )}
+                  {val?.priceChange1d <= 0 ? (
+                    <td className="red right-align">{val?.priceChange1d}%</td>
+                  ) : (
+                    <td className="green right-align">{val?.priceChange1d}%</td>
+                  )}
+                  {val?.priceChange1w <= 0 ? (
+                    <td className="red right-align">{val?.priceChange1w}%</td>
+                  ) : (
+                    <td className="green right-align">{val?.priceChange1w}%</td>
+                  )}
                 </tr>
               );
             })}
