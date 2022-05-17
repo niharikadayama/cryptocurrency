@@ -1,14 +1,13 @@
 @import "../../styles/colors.scss";
 @import "../../styles/styleFunctions.scss";
 
-.table-container{
+.table-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    .table-header{
+    .table-header {
         display: table-header-group;
         vertical-align: middle;
-        border-color: inherit;  
+        border-color: inherit;
     }
 }
