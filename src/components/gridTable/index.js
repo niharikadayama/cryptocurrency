@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NumberFormat from 'react-number-format';
 import "./style.scss";
 
 const GridTable = (props) => {
@@ -58,13 +59,19 @@ const GridTable = (props) => {
                       <p className="name">{val?.name}</p>
                     </button>
                   </td>
-                  <td>{val?.marketCap}</td>
-                  <td>{val?.price}</td>
-                  <td>{val?.availableSupply}</td>
-                  <td>{val?.volume}</td>
-                  <td>{val?.priceChange1h}</td>
-                  <td>{val?.priceChange1d}</td>
-                  <td>{val?.priceChange1w}</td>
+                  <td>
+                    <NumberFormat value={Math.floor(val?.marketCap)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                    </td>
+                  <td>
+                  <NumberFormat value={(val?.price).toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                  </td>
+                  <td><NumberFormat value={val?.totalSupply} displayType={'text'} thousandSeparator={true} /> <span>{val?.symbol}</span></td>
+                  <td>
+                  <NumberFormat value={Math.floor(val?.volume)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                  </td>
+                  <td>{val?.priceChange1h}%</td>
+                  <td>{val?.priceChange1d}%</td>
+                  <td>{val?.priceChange1w}%</td>
                 </tr>
               );
             })}
