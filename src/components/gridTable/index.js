@@ -31,21 +31,19 @@ const GridTable = () => {
         <p>Please wait..</p>
       ) : (
         <div className="table-container">
-          <table className="table">
-            <thead className="table-header">
-              <tr className="table-header-row">
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Symbol</th>
-                <th>Market Cap</th>
-                <th>Price</th>
-                <th>Circulating Supply</th>
-                <th>Volume(24h)</th>
-                <th>% 1h</th>
-                <th>% 24h</th>
-                <th>% 7d</th>
-              </tr>
-            </thead>
+          <table>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Symbol</th>
+              <th>Market Cap</th>
+              <th>Price</th>
+              <th>Circulating Supply</th>
+              <th>Volume(24h)</th>
+              <th>% 1h</th>
+              <th>% 24h</th>
+              <th>% 7d</th>
+            </tr>
             {APIData.map((val, key) => {
               return (
                 <tr key={key}>
@@ -55,7 +53,7 @@ const GridTable = () => {
                   <td>{val?.marketCap}</td>
                   <td>{val?.price}</td>
                   <td>{val?.availableSupply}</td>
-                  <td>{val?.Volume}</td>
+                  <td>{val?.volume}</td>
                   <td>{val?.priceChange1h}</td>
                   <td>{val?.priceChange1d}</td>
                   <td>{val?.priceChange1w}</td>

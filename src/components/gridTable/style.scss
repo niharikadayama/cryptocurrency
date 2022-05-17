@@ -5,9 +5,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    .table-header {
-        display: table-header-group;
-        vertical-align: middle;
-        border-color: inherit;
+    table{
+        width:100%;
+        border: 1px solid black;
+    }
+    th{
+        text-align: start; 
+    }
+    tr{
+        border-bottom: 1px solid black;
+    }
+    td{
+        padding-left: 4px;
+        padding-top: 10px;
     }
 }
