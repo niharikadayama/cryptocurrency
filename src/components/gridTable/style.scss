@@ -5,18 +5,41 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    .button-name{
+        all:unset;
+        .icon-img {
+            width: 20px;
+            height: 20px;
+            padding-right: 4px;
+        }
+        .img-symbol{
+            display: flex;
+            .symbol{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: rgba(23, 24, 27, 0.85);
+                font-weight: 600;
+            }
+        }
+        .name{
+            color: rgba(39, 52, 64, 0.5);
+            font-size: 12px;
+            font-weight: normal;
+        }
+    }
     table{
         width:100%;
-        border: 1px solid black;
+        border-collapse: collapse;
     }
     th{
         text-align: start; 
+        padding-bottom: 10px;
     }
     tr{
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #cfd6e4;
     }
     td{
         padding-left: 4px;
-        padding-top: 10px;
     }
 }
