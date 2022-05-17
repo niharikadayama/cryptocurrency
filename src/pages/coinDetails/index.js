@@ -1,11 +1,13 @@
 import React from "react";
 import ProgressBarLineExample from "../../components/progressBar";
+import { useNavigate } from "react-router-dom";
 import { Images } from "../../constants/images";
 import "./style.scss";
 
-const CoinDetails = () => {
+const CoinDetails = (props) => {
   const { arrow_down, link, search, upload, user, paper, coding, m, info } =
     Images;
+    const nav =useNavigate();
   return (
     <div className="coinDetails-container">
       <div className="coinDetails-card">
@@ -14,7 +16,7 @@ const CoinDetails = () => {
             Cryptocurrencies
             <span className="coinDetails-nav-button-arrow">{">"}</span>
           </button>
-          <button className="coinDetails-nav-button">
+          <button className="coinDetails-nav-button" onClick={()=>nav(-1)}>
             Coins <span className="coinDetails-nav-button-arrow">{">"}</span>
           </button>
           <button className="coinDetails-nav-button current-coin">
