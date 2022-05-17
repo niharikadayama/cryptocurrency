@@ -1,65 +1,69 @@
-import React, { useEffect } from "react";
-import GridLayout from "react-grid-layout";
+import React, { useEffect,useState } from "react";
 import "./style.scss";
-import {getData} from "../../services/api";
+
 
 const GridTable = () => {
-  const [data,setData] =useEffect([]);
-  const layout = [
-    { i: "rank", x: 0, y: 0, w: 0.5, h: 1 },
-    { i: "name", x: 1, y: 0, w: 0.5, h: 1 },
-    { i: "symbol", x: 2, y: 0, w: 1, h: 1 },
-    { i: "market_cap", x: 3, y: 0, w: 1, h: 1 },
-    { i: "price", x: 4, y: 0, w: 1, h: 1 },
-    { i: "circulating_supply", x: 5, y: 0, w: 1, h: 1 },
-    { i: "volume", x: 6, y: 0, w: 1, h: 1 },
-    { i: "1h", x: 7, y: 0, w: 1, h: 1 },
-    { i: "24h", x: 8, y: 0, w: 1, h: 1 },
-    { i: "7d", x: 9, y: 0, w: 1, h: 1 },
-  ];
-   
+  const[APIData , setAPIData] = useState(null);
+  const [loading,setLoading] = useState(true);
+  const getData = async() => {
+         const url = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=10';
+         const response = await fetch(url);
+         const responseJson = await response.json();
+         console.log(responseJson);
+         if(responseJson===null)
+         {
+          console.log("Waiting for reaponse");
+         }
+         else{
+            console.log(responseJson)
+            setAPIData(responseJson.coins)
+            setLoading(false);
+         }
+       }
+      
+  useEffect(()=>{
+   console.log(APIData)
+  },[APIData])  
+  useEffect(()=>{
+    getData()
+  },[])  
+ 
   return (
     <>
-     <GridLayout
-      className="layout"
-      layout={layout}
-      cols={10}
-      rowHeight={6}
-      width={1350}
-    >
-
-        <div key="rank">
-          <h4 className="layout-title">Rank</h4>
-        </div>
-        <div key="name">
-          <h4 className="layout-title">Name</h4>
-          <p>Bitcoin</p>
-        </div>
-        <div key="symbol">
-          <h4 className="layout-title">Symbol</h4>
-        </div>
-        <div key="market_cap">
-          <h4 className="layout-title">Market Cap</h4>
-        </div>
-        <div key="price">
-          <h4 className="layout-title">Price</h4>
-        </div>
-        <div key="circulating_supply">
-          <h4 className="layout-rxt">Circulating Supply</h4>
-        </div>
-        <div key="volume">
-          <h4 className="layout-vol">Volume(24h)</h4>
-        </div>
-        <div key="1h">
-          <h4 className="layout-title">% 1h</h4>
-        </div>
-        <div key="24h">
-          <h4 className="layout-title">% 24h</h4>
-        </div>
-        <div key="7d">
-          <h4 className="layout-title">% 7d</h4>
-        </div>
-      </GridLayout></>
+    {loading ? <p>Please wait..</p> : 
+    <div className="table-container">
+    <table className="table">
+    <thead className="table-header">
+      <tr className="table-header-row">
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Symbol</th>
+      <th>Market Cap</th>
+      <th>Price</th>
+      <th>Circulating Supply</th>
+      <th>Volume(24h)</th>
+      <th>% 1h</th>
+      <th>% 24h</th>
+      <th>% 7d</th></tr>
+    </thead>
+    {APIData.map((val, key) => {
+      return (
+        <tr key={key}>
+          <td>{val?.rank}</td>
+          <td>{val?.name}</td>
+          <td>{val?.symbol}</td>
+          <td>{val?.marketCap}</td>
+          <td>{val?.price}</td>
+          <td>{val?.availableSupply}</td>
+          <td>{val?.Volume}</td>
+          <td>{val?.priceChange1h}</td>
+          <td>{val?.priceChange1d}</td>
+          <td>{val?.priceChange1w}</td>
+        </tr>
+      )
+    })}
+  </table></div>}
+     </> 
   );
 };
 
