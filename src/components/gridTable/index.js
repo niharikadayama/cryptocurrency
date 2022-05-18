@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NumberFormat from "react-number-format";
 import "./style.scss";
 
-const GridTable = (props) => {
+const GridTable = () => {
   const nav = useNavigate();
   const [APIData, setAPIData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,17 +42,21 @@ const GridTable = (props) => {
               <th className="right-align">Market Cap</th>
               <th className="right-align">Price</th>
               <th className="right-align">Circulating Supply</th>
-              <th className="right-align">Volume(24h)</th>
+              <th className="right-align">Volume</th>
               <th className="right-align">% 1h</th>
               <th className="right-align">% 24h</th>
               <th className="right-align">% 7d</th>
             </tr>
             {APIData.map((val, key) => {
+              const coinId = val.name.toLowerCase();
               return (
                 <tr key={key}>
                   <td>{val?.rank}</td>
                   <td>
-                    <button onClick={() => nav("/h")} className="button-name">
+                    <button
+                      onClick={() => nav(`/client/${coinId}`)}
+                      className="button-name"
+                    >
                       <span>
                         <img src={val.icon} alt="icon" className="icon-img" />
                       </span>
@@ -78,7 +82,7 @@ const GridTable = (props) => {
                   </td>
                   <td className="right-align">
                     <NumberFormat
-                      value={val?.totalSupply}
+                      value={val?.availableSupply}
                       displayType={"text"}
                       thousandSeparator={true}
                     />

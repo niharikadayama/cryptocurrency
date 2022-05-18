@@ -1,17 +1,16 @@
-import HomePage from  "../src/pages/homePage"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import HomePage from "../src/pages/homePage";
 import CoinDetails from "./pages/coinDetails";
-import {BrowserRouter , Routes , Route} from "react-router-dom"
 
 function App() {
   return (
-    <BrowserRouter>
-          <Routes>
-              <Route index element = {<HomePage/>}></Route>
-              <Route path = "/h" element= {<CoinDetails />}></Route>
-          </Routes>
-    </BrowserRouter>
-      
-  
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/client/:id" element={<CoinDetails />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
