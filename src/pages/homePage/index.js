@@ -1,6 +1,5 @@
 import React from "react";
-import GridHeader from "../../components/gridHeader";
-import GridTable from "../../components/gridTable";
+import { GridHeader, GridTable } from "../../components";
 import "./style.scss";
 
 const Homepage = () => {

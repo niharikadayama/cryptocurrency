@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NumberFormat from "react-number-format";
+import Loading from "../loader";
 import "./style.scss";
 
 const GridTable = () => {
@@ -31,7 +32,7 @@ const GridTable = () => {
   return (
     <>
       {loading ? (
-        <p>Please wait..</p>
+        <Loading />
       ) : (
         <div className="table-container">
           <table>
@@ -85,6 +86,7 @@ const GridTable = () => {
                       displayType={"text"}
                       thousandSeparator={true}
                     />
+
                     <span>{val?.symbol}</span>
                   </td>
                   <td className="volume right-align">
