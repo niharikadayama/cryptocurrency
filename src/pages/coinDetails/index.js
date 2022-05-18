@@ -78,7 +78,7 @@ const CoinDetails = () => {
                 </div>
                 <div className="coinDetails-coinInfo-left-row2">
                   <div className="coinDetails-coinInfo-left-row2-tokens selected-token">
-                    Rank #1
+                    Rank #{APIData?.rank}
                   </div>
                   <div className="coinDetails-coinInfo-left-row2-tokens">
                     Coin
@@ -149,23 +149,29 @@ const CoinDetails = () => {
                 <div className="coinDetails-source-websites-details">
                   <ul>
                     <li>
-                      <button className="coinDetails-source-websites-details-button">
-                        <span className="coinDetails-source-websites-details-button-span">
-                          <img
-                            src={link}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgStart"
-                          />
-                          <p className="coinDetails-source-websites-details-title">
-                            Bitcoin.org
-                          </p>
-                          <img
-                            src={upload}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgEnd"
-                          />
-                        </span>
-                      </button>
+                      <a
+                        href={APIData.websiteUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <button className="coinDetails-source-websites-details-button">
+                          <span className="coinDetails-source-websites-details-button-span">
+                            <img
+                              src={link}
+                              alt="link"
+                              className="coinDetails-source-websites-details-imgStart"
+                            />
+                            <p className="coinDetails-source-websites-details-title">
+                              {APIData.name}.org
+                            </p>
+                            <img
+                              src={upload}
+                              alt="link"
+                              className="coinDetails-source-websites-details-imgEnd"
+                            />
+                          </span>
+                        </button>
+                      </a>
                     </li>
                     <li>
                       <button className="coinDetails-source-websites-details-button">
@@ -379,7 +385,10 @@ const CoinDetails = () => {
                       19,041,962.00 BTC
                     </p>
                     <div>
-                      <ProgressBarLineExample />
+                      <ProgressBarLineExample
+                        minimum={parseInt(APIData?.availableSupply)}
+                        maximum={parseInt(APIData?.totalSupply)}
+                      />
                     </div>
                   </div>
                   <div className="coinDetails-stockInfo-div-stats-supply">

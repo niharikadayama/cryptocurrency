@@ -208,6 +208,10 @@
                li{
                   all: unset;
                }
+               a{
+                  all: unset;
+                  cursor: pointer;
+               }
               .coinDetails-source-websites-details-button{
                   all:unset;
                   background-color: $color-light-neutral-2;
