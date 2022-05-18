@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import NumberFormat from "react-number-format";
 import ProgressBarLineExample from "../../components/progressBar";
 import { useParams, useNavigate } from "react-router-dom";
 import { Images } from "../../constants/images";
@@ -12,31 +14,29 @@ const CoinDetails = () => {
   const nav = useNavigate();
   const [APIData, setAPIData] = useState(null);
   const [loading, setLoading] = useState(true);
+
   const getData = async () => {
-    const url = `https://api.coinstats.app/public/v1/coins/${id}`;
-    const response = await fetch(url);
-    const responseJson = await response.json();
-    console.log(responseJson);
-    if (responseJson === null) {
-      console.log("Waiting for response");
-    } else {
-      console.log(responseJson);
-      setAPIData(responseJson.coins);
-      setLoading(false);
+    try {
+      let request = await axios.get(
+        `https://api.coinstats.app/public/v1/coins/${id}`
+      );
+      return request.data;
+    } catch (error) {
+      console.log(error);
     }
   };
-
+  useEffect(() => {}, [APIData]);
   useEffect(() => {
-    console.log(APIData);
-  }, [APIData]);
-  useEffect(() => {
-    getData();
+    getData().then((data) => {
+      setAPIData(data.coin);
+      setLoading(false);
+    });
   }, []);
 
   return (
     <>
       {loading ? (
-        <p>please wait...</p>
+        <p>hiiiii</p>
       ) : (
         <div className="coinDetails-container">
           <div className="coinDetails-card">
@@ -53,22 +53,22 @@ const CoinDetails = () => {
                 <span className="coinDetails-nav-button-arrow">{">"}</span>
               </button>
               <button className="coinDetails-nav-button current-coin">
-                Bitcoin
+                {APIData?.name}
               </button>
             </div>
             <div className="coinDetails-coinInfo">
               <div className="coinDetails-coinInfo-left">
                 <div className="coinDetails-coinInfo-left-row1">
                   <img
-                    src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+                    src={APIData?.icon}
                     alt="coin-icon"
                     className="coinDetails-coinInfo-left-row1-img"
                   />
                   <p className="coinDetails-coinInfo-left-row1-coinName">
-                    Bitcoin
+                    {APIData?.name}
                   </p>
                   <p className="coinDetails-coinInfo-left-row1-coinTokenName">
-                    BTC
+                    {APIData?.symbol}
                   </p>
                   <span className="coinDetails-coinInfo-left-row1-star">
                     <button className="coinDetails-coinInfo-left-row1-star-button">
@@ -90,14 +90,19 @@ const CoinDetails = () => {
               </div>
               <div className="coinDetails-coinInfo-right">
                 <p className="coinDetails-coinInfo-right-row1">
-                  Bitcoin Price{" "}
+                  {APIData?.name} Price
                   <span className="coinDetails-coinInfo-right-row1-span">
-                    (BTC)
+                    ({APIData?.symbol})
                   </span>
                 </p>
                 <div className="coinDetails-coinInfo-right-row2">
                   <p className="coinDetails-coinInfo-right-row2-price">
-                    $30,307.62
+                    <NumberFormat
+                      value={(APIData?.price).toFixed(2)}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"$"}
+                    />
                     <span className="coinDetails-coinInfo-right-row2-percentage-div">
                       &#9650; 1.64%
                     </span>

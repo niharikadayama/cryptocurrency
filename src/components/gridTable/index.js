@@ -48,13 +48,12 @@ const GridTable = () => {
               <th className="right-align">% 7d</th>
             </tr>
             {APIData.map((val, key) => {
-              const coinId = val.name.toLowerCase();
               return (
                 <tr key={key}>
                   <td>{val?.rank}</td>
                   <td>
                     <button
-                      onClick={() => nav(`/client/${coinId}`)}
+                      onClick={() => nav(`/client/${val.id}`)}
                       className="button-name"
                     >
                       <span>
