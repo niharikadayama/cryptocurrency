@@ -1,17 +1,15 @@
 import React from "react";
 
 import { ProgressBarLine } from "react-progressbar-line";
-const ProgressBarLineExample = (minimum, maximum) => {
-  const per = (minimum / maximum) * 100;
-  console.log(per);
+const ProgressBarLineExample = ({ val }) => {
+  const percentage = val <= 0 ? 0 : val === "infinity" ? 0 : val;
   return (
     <ProgressBarLine
-      value={80}
+      value={percentage}
       min={0}
       max={100}
       strokeWidth={5}
       trailWidth={5}
-      text="hiii"
       styles={{
         path: {
           stroke: "#a6b0c3",

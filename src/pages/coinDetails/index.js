@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NumberFormat from "react-number-format";
-import ProgressBarLineExample from "../../components/progressBar";
 import { useParams, useNavigate } from "react-router-dom";
+
+import { Loading, ProgressBarLineExample } from "../../components";
 import { Images } from "../../constants/images";
 import "./style.scss";
 
 const CoinDetails = () => {
-  const { arrow_down, link, search, upload, user, paper, coding, m, info } =
-    Images;
+  const { arrow_down, link, search, upload, paper, coding, m, info } = Images;
   const { id } = useParams();
-  console.log(id);
   const nav = useNavigate();
   const [APIData, setAPIData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -36,7 +35,9 @@ const CoinDetails = () => {
   return (
     <>
       {loading ? (
-        <p>hiiiii</p>
+        <div className="coinDetails-container">
+          <Loading />
+        </div>
       ) : (
         <div className="coinDetails-container">
           <div className="coinDetails-card">
@@ -49,7 +50,7 @@ const CoinDetails = () => {
                 className="coinDetails-nav-button"
                 onClick={() => nav(-1)}
               >
-                Coins{" "}
+                Coins
                 <span className="coinDetails-nav-button-arrow">{">"}</span>
               </button>
               <button className="coinDetails-nav-button current-coin">
@@ -103,9 +104,15 @@ const CoinDetails = () => {
                       thousandSeparator={true}
                       prefix={"$"}
                     />
-                    <span className="coinDetails-coinInfo-right-row2-percentage-div">
-                      &#9650; 1.64%
-                    </span>
+                    {APIData?.priceChange1h <= 0 ? (
+                      <span className="coinDetails-coinInfo-right-row2-percentage-div red-bg">
+                        &#9660; {APIData?.priceChange1h}%
+                      </span>
+                    ) : (
+                      <span className="coinDetails-coinInfo-right-row2-percentage-div green-bg">
+                        &#9650; 1.64%
+                      </span>
+                    )}
                   </p>
                 </div>
                 <div className="coinDetails-coinInfo-right-row3">
@@ -115,32 +122,6 @@ const CoinDetails = () => {
                       &#9660; 0.74%
                     </span>
                   </p>
-                </div>
-                <div className="coinDetails-coinInfo-right-row4">
-                  <div className="coinDetails-coinInfo-right-row4-scale">
-                    <span className="coinDetails-coinInfo-right-row4-scaleTitle">
-                      Low:
-                    </span>
-                    <span className="coinDetails-coinInfo-right-row4-scaleValue">
-                      $29,527.74
-                    </span>
-                  </div>
-                  <div className="coinDetails-coinInfo-right-row4-progressBar">
-                    <ProgressBarLineExample />
-                  </div>
-                  <div className="coinDetails-coinInfo-right-row4-scale">
-                    <span className="coinDetails-coinInfo-right-row4-scaleTitle right">
-                      High:
-                    </span>
-                    <span className="coinDetails-coinInfo-right-row4-scaleValue">
-                      $31,527.19
-                    </span>
-                  </div>
-                  <div className="coinDetails-coinInfo-right-row4-dropdown">
-                    <span className="coinDetails-coinInfo-right-row4-dropdown-content">
-                      24h &or;
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -174,80 +155,67 @@ const CoinDetails = () => {
                       </a>
                     </li>
                     <li>
-                      <button className="coinDetails-source-websites-details-button">
-                        <span className="coinDetails-source-websites-details-button-span">
-                          <img
-                            src={search}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgStart"
-                          />
-                          <p className="coinDetails-source-websites-details-title">
-                            Explorers
-                          </p>
-                          <img
-                            src={arrow_down}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgEnd"
-                          />
-                        </span>
-                      </button>
+                      <a href={APIData.exp[3]}>
+                        <button className="coinDetails-source-websites-details-button">
+                          <span className="coinDetails-source-websites-details-button-span">
+                            <img
+                              src={search}
+                              alt="link"
+                              className="coinDetails-source-websites-details-imgStart"
+                            />
+                            <p className="coinDetails-source-websites-details-title">
+                              Explorers
+                            </p>
+                            <img
+                              src={arrow_down}
+                              alt="link"
+                              className="coinDetails-source-websites-details-imgEnd"
+                            />
+                          </span>
+                        </button>
+                      </a>
                     </li>
                     <li>
-                      <button className="coinDetails-source-websites-details-button">
-                        <span className="coinDetails-source-websites-details-button-span">
-                          <img
-                            src={user}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgStart"
-                          />
-                          <p className="coinDetails-source-websites-details-title">
-                            Community
-                          </p>
-                          <img
-                            src={arrow_down}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgEnd"
-                          />
-                        </span>
-                      </button>
+                      <a href="https://github.com/centrehq/centre-tokens">
+                        <button className="coinDetails-source-websites-details-button">
+                          <span className="coinDetails-source-websites-details-button-span">
+                            <img
+                              src={coding}
+                              alt="link"
+                              className="coinDetails-source-websites-details-imgStart"
+                            />
+                            <p className="coinDetails-source-websites-details-title">
+                              Source code
+                            </p>
+                            <img
+                              src={upload}
+                              alt="link"
+                              className="coinDetails-source-websites-details-imgEnd"
+                            />
+                          </span>
+                        </button>
+                      </a>
                     </li>
                     <li>
-                      <button className="coinDetails-source-websites-details-button">
-                        <span className="coinDetails-source-websites-details-button-span">
-                          <img
-                            src={coding}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgStart"
-                          />
-                          <p className="coinDetails-source-websites-details-title">
-                            Source code
-                          </p>
-                          <img
-                            src={upload}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgEnd"
-                          />
-                        </span>
-                      </button>
-                    </li>
-                    <li>
-                      <button className="coinDetails-source-websites-details-button">
-                        <span className="coinDetails-source-websites-details-button-span">
-                          <img
-                            src={paper}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgStart"
-                          />
-                          <p className="coinDetails-source-websites-details-title">
-                            Whitepaper
-                          </p>
-                          <img
-                            src={upload}
-                            alt="link"
-                            className="coinDetails-source-websites-details-imgEnd"
-                          />
-                        </span>
-                      </button>
+                      <a href="https://f.hubspotusercontent30.net/hubfs/9304636/PDF/centre-whitepaper.pdf">
+                        <button className="coinDetails-source-websites-details-button">
+                          <span className="coinDetails-source-websites-details-button-span">
+                            <img
+                              src={paper}
+                              alt="link"
+                              className="coinDetails-source-websites-details-imgStart"
+                            />
+                            <p className="coinDetails-source-websites-details-title">
+                              Whitepaper
+                            </p>
+                            <img
+                              src={upload}
+                              alt="link"
+                              className="coinDetails-source-websites-details-imgEnd"
+                            />
+                          </span>
+                        </button>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -314,28 +282,15 @@ const CoinDetails = () => {
                     </span>
                   </p>
                   <p className="coinDetails-stockInfo-div-stats-price">
-                    $572,877,625,906
+                    <NumberFormat
+                      value={Math.floor(APIData?.marketCap)}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"$"}
+                    />
                   </p>
                   <p className="coinDetails-stockInfo-div-stats-percent">
                     &#9650; 0.68%
-                  </p>
-                </div>
-                <div className="coinDetails-stockInfo-div-stats left">
-                  <p className="coinDetails-stockInfo-div-stats-title">
-                    Fully Diluted Market Cap
-                    <span>
-                      <img
-                        src={info}
-                        alt="stats"
-                        className="coinDetails-stockInfo-div-stats-title-img"
-                      />
-                    </span>
-                  </p>
-                  <p className="coinDetails-stockInfo-div-stats-price">
-                    $621,587,890,887
-                  </p>
-                  <p className="coinDetails-stockInfo-div-stats-percent">
-                    &#9650; 1.21%
                   </p>
                 </div>
                 <div className="coinDetails-stockInfo-div-stats left two-div">
@@ -354,7 +309,12 @@ const CoinDetails = () => {
                       </span>
                     </p>
                     <p className="coinDetails-stockInfo-div-stats-price">
-                      $572,877,625,906
+                      <NumberFormat
+                        value={Math.floor(APIData?.volume)}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
                     </p>
                     <p className="coinDetails-stockInfo-div-stats-percent">
                       &#9650; 14.59%
@@ -365,7 +325,7 @@ const CoinDetails = () => {
                       Volume/Market Cap
                     </p>
                     <p className="coinDetails-stockInfo-div-stats-price">
-                      0.05609
+                      {(APIData.volume / APIData.marketCap).toFixed(5)}
                     </p>
                   </div>
                 </div>
@@ -382,12 +342,19 @@ const CoinDetails = () => {
                       </span>
                     </p>
                     <p className="coinDetails-stockInfo-div-stats-price">
-                      19,041,962.00 BTC
+                      <NumberFormat
+                        value={APIData?.availableSupply}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
+                      {"  "}
+                      BTC
                     </p>
                     <div>
                       <ProgressBarLineExample
-                        minimum={parseInt(APIData?.availableSupply)}
-                        maximum={parseInt(APIData?.totalSupply)}
+                        val={
+                          (APIData.availableSupply / APIData.totalSupply) * 100
+                        }
                       />
                     </div>
                   </div>
@@ -404,7 +371,11 @@ const CoinDetails = () => {
                         </span>
                       </p>
                       <p className="coinDetails-stockInfo-div-stats-supply-info-price">
-                        21,000,000
+                        <NumberFormat
+                          value={Math.floor(APIData?.totalSupply)}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />
                       </p>
                     </div>
                     <div className="coinDetails-stockInfo-div-stats-supply-info">
@@ -419,7 +390,11 @@ const CoinDetails = () => {
                         </span>
                       </p>
                       <p className="coinDetails-stockInfo-div-stats-supply-info-price">
-                        19,041,962
+                        <NumberFormat
+                          value={Math.floor(APIData?.availableSupply)}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />
                       </p>
                     </div>
                   </div>

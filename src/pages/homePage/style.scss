@@ -1,10 +1,9 @@
 @import "../../styles/colors.scss";
-@import "../../styles/styleFunctions.scss";
 
 .container{
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background-color: $color-primary-white;
     display: flex;
     flex-direction: column;
     padding: 10px;
