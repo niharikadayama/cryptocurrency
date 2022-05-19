@@ -4,8 +4,15 @@ import callAPI from "../../services/apiCall";
 import "./style.scss";
 
 function LineChart({ id }) {
-  console.log(id);
   const [latestPrice, setLatestPrice] = useState(0);
+  const [days, setDays] = useState(1);
+  const [interval, setInterval] = useState("24h");
+
+  const setParams = (day, period) => {
+    console.log(day);
+    setDays(() => day);
+    setInterval(() => period);
+  };
 
   useEffect(() => {
     fetchData().then((chartData) => {
@@ -14,12 +21,12 @@ function LineChart({ id }) {
         parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2)
       );
     });
-  }, []);
+  }, [days, interval]);
 
   const fetchData = async () => {
     let data = { index: [], price: [], volumes: [] };
     let result = await callAPI(
-      `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=1m`
+      `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=${interval}`
     );
     for (const item of result.prices) {
       data.index.push(item[0]);
@@ -91,7 +98,43 @@ function LineChart({ id }) {
         Latest price of {id} : $ {latestPrice}
       </h2>
       <h4 className="chart-subHeading">
-        price: <span className="color-span">|</span>
+        <p>
+          price: <span className="color-span">|</span>
+        </p>
+        <div className="chart-meter">
+          <button
+            className="chart-meter-params"
+            onClick={() => {
+              setParams(1, "24h");
+            }}
+          >
+            1D
+          </button>
+          <button
+            className="chart-meter-params"
+            onClick={() => {
+              setParams(30, "1m");
+            }}
+          >
+            1M
+          </button>
+          <button
+            className="chart-meter-params"
+            onClick={() => {
+              setParams(90, "3m");
+            }}
+          >
+            3M
+          </button>
+          <button
+            className="chart-meter-params"
+            onClick={() => {
+              setParams(364, "1y");
+            }}
+          >
+            1Y
+          </button>
+        </div>
       </h4>
       <div id="chart" className="p-0 m-0"></div>
     </>
