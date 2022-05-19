@@ -1,0 +1,28 @@
+@import "../../styles/colors.scss";
+
+.chart-heading{
+    text-align: center;
+    font-size: 18px;
+}
+.chart-subHeading{
+  width: 200px;
+  padding-left: 20px;
+  .color-span{
+    width: 15px;
+    height: 5px;
+    background-color: blue;
+    color: blue;
+  }
+  .chart-meter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .chart-meter-params{
+      all: unset;
+      padding: 5px 10px;
+      background-color: $color-light-neutral-3;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  }
+}

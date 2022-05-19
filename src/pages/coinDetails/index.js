@@ -3,12 +3,12 @@ import axios from "axios";
 import NumberFormat from "react-number-format";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { Loading, ProgressBarLineExample } from "../../components";
+import { Loading, ProgressBarLineExample, LineChart } from "../../components";
 import { Images } from "../../constants/images";
 import "./style.scss";
 
 const CoinDetails = () => {
-  const { arrow_down, link, search, upload, paper, coding, m, info } = Images;
+  const { link, search, upload, paper, coding, m, info } = Images;
   const { id } = useParams();
   const nav = useNavigate();
   const [APIData, setAPIData] = useState(null);
@@ -24,6 +24,7 @@ const CoinDetails = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {}, [APIData]);
   useEffect(() => {
     getData().then((data) => {
@@ -167,7 +168,7 @@ const CoinDetails = () => {
                               Explorers
                             </p>
                             <img
-                              src={arrow_down}
+                              src={upload}
                               alt="link"
                               className="coinDetails-source-websites-details-imgEnd"
                             />
@@ -400,6 +401,9 @@ const CoinDetails = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="coinDetails-chart">
+              <LineChart id={id} />
             </div>
           </div>
         </div>
