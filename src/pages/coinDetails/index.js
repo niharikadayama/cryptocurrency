@@ -13,7 +13,6 @@ const CoinDetails = () => {
   const nav = useNavigate();
   const [APIData, setAPIData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [chartData, setChartData] = useState({});
 
   const getData = async () => {
     try {
@@ -25,40 +24,12 @@ const CoinDetails = () => {
       console.log(error);
     }
   };
-  const fetchPrices = async () => {
-    try {
-      let request = await axios.get(
-        `https://api.coinstats.app/public/v1/charts?period=1m&coinId=${id}`
-      );
-      console.log(request.data);
-      return request.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   useEffect(() => {}, [APIData]);
   useEffect(() => {
     getData().then((data) => {
       setAPIData(data.coin);
       setLoading(false);
-    });
-    fetchPrices().then((data) => {
-      setChartData({
-        labels: ["2:34PM", "5:34PM", "8:34PM", "11:34PM", "2:34AM"],
-        datasets: [
-          {
-            label: "Price in USD",
-            data: data,
-            backgroundColor: [
-              "#ffbb11",
-              "#ecf0f1",
-              "#50AF95",
-              "#f3ba2f",
-              "#2a71d0",
-            ],
-          },
-        ],
-      });
     });
   }, []);
 
@@ -431,8 +402,8 @@ const CoinDetails = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <LineChart chartData={chartData} />
+            <div className="coinDetails-chart">
+              <LineChart id={id} />
             </div>
           </div>
         </div>
